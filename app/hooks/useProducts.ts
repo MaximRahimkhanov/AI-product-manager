@@ -1,9 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import { getProducts } from '../lib/apiClient';
-import { Product } from '@prisma/client';
+import { ProductType } from '../types/product';
 
 export const useProducts = () => {
-  return useQuery<Product[]>({
+  return useQuery<ProductType[]>({
     queryKey: ['products'],
     queryFn: getProducts,
   });

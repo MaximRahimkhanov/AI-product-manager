@@ -1,13 +1,13 @@
 import { useMutation } from '@tanstack/react-query';
 // import { analyzeImage } from '@/app/api/analyze/analyze';
 import toast from 'react-hot-toast';
-import { Product } from '@prisma/client';
 import { analyzeImage } from '../lib/apiClient';
+import { ProductType } from '../types/product';
 
 export const useAnalyzeImage = (
-  onSuccess?: (data: Omit<Product, 'id' | 'createdAt'>) => void,
+  onSuccess?: (data: Omit<ProductType, 'id' | 'createdAt'>) => void,
 ) => {
-  return useMutation<Omit<Product, 'id' | 'createdAt'>, Error, string>({
+  return useMutation<Omit<ProductType, 'id' | 'createdAt'>, Error, string>({
     mutationFn: analyzeImage,
     onSuccess: (data) => {
       toast.success('AI проаналізував фото');

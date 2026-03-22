@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateProduct } from '../lib/apiClient';
-import { Product } from '@prisma/client';
+import { ProductType } from '../types/product';
 
 export const useUpdateProduct = () => {
   const queryClient = useQueryClient();
@@ -8,7 +8,7 @@ export const useUpdateProduct = () => {
   return useMutation({
     mutationFn: (vars: {
       id: string;
-      product: Omit<Product, 'id' | 'createdAt'>;
+      product: Omit<ProductType, 'id' | 'createdAt'>;
     }) => updateProduct(vars.id, vars.product),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['products'] });

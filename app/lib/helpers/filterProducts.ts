@@ -1,4 +1,4 @@
-import { Product } from '@prisma/client';
+import { ProductType } from '@/app/types/product';
 
 export type SortBy = 'quantity' | 'date' | 'name' | null;
 
@@ -10,9 +10,9 @@ interface FilterOptions {
 }
 
 export function filterProducts(
-  products: Product[],
+  products: ProductType[],
   options: FilterOptions,
-): Product[] {
+): ProductType[] {
   let result = [...products];
 
   // Пошук
