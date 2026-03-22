@@ -2,24 +2,18 @@ import { normalizeProduct } from '@/app/lib/helpers/normalize';
 import { prisma } from '@/app/lib/prisma';
 import { NextRequest, NextResponse } from 'next/server';
 
-// Отримати один товар за id
-export async function GET(
-  request: NextRequest,
-  context: { params: { id: string } },
-) {
-  console.log('URL:', request.url);
+type Params = { id: string };
 
-  const { id } = context.params;
+interface Context {
+  params: Params | Promise<Params>;
+}
 
-  const product = await prisma.product.findUnique({
-    where: { id },
-  });
-
-  if (!product) {
-    return NextResponse.json({ error: 'Product not found' }, { status: 404 });
-  }
-
-  return NextResponse.json(product);
+export async function GET(request: NextRequest, context: Context) {
+  const params = await context.params;
+  const product = await prisma.product.findUnique({ where: { id: params.id } });
+  return product
+    ? NextResponse.json(product)
+    : NextResponse.json({ error: 'Product not found' }, { status: 404 });
 }
 
 // Оновити товар за id
@@ -47,7 +41,7 @@ export async function DELETE(
   request: Request,
   context: { params: Promise<{ id: string }> },
 ) {
-  const { id } = await context.params; // ✅ розгортаємо проміс
+  const { id } = await context.params;
 
   try {
     await prisma.product.delete({
