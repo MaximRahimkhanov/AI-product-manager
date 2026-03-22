@@ -64,60 +64,56 @@
 //     return Response.json({ error: String(error) }, { status: 500 });
 //   }
 // }
-// import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// export async function POST(req: Request) {
-//   try {
-//     const { image } = await req.json();
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
-//     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-//     const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
-
-//     const aiPrompt = `
-// Ти — асистент менеджера складу.
-// Поверни тільки JSON без пояснень:
-
-// {
-// "name": "назва",
-// "quantity": число,
-// "category": "категорія",
-// "description": "опис"
-// }
-// `;
-
-//     const result = await model.generateContent([
-//       { text: aiPrompt },
-//       {
-//         inlineData: {
-//           data: image,
-//           mimeType: 'image/jpeg',
-//         },
-//       },
-//     ]);
-
-//     const responseText = result.response.text();
-//     const cleanJson = responseText
-//       .replace(/```json/g, '')
-//       .replace(/```/g, '')
-//       .trim();
-
-//     const aiResult = JSON.parse(cleanJson);
-
-//     console.log('resultAI', aiResult);
-
-//     return Response.json(aiResult);
-//   } catch (error) {
-//     return Response.json({ error: 'AI parsing error' }, { status: 500 });
-//   }
-// }
 export async function POST(req: Request) {
-  const { image } = await req.json();
+  try {
+    const { image } = await req.json();
 
-  // тут можна або викликати AI, або повернути mock JSON
-  return Response.json({
-    name: 'Тестовий товар',
-    quantity: 5,
-    category: 'Тестова категорія',
-    description: 'Це опис для тесту новий товар із мок',
-  });
+    const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
+    const model = genAI.getGenerativeModel({ model: 'gemini-2.5-flash' });
+
+    const aiPrompt = `
+Ти — асистент менеджера складу.
+Поверни тільки JSON без пояснень:
+
+{
+"name": "назва",
+"quantity": число,
+"category": "категорія",
+"description": "опис"
+}
+`;
+
+    const result = await model.generateContent([
+      { text: aiPrompt },
+      {
+        inlineData: {
+          data: image,
+          mimeType: 'image/jpeg',
+        },
+      },
+    ]);
+
+    const responseText = result.response.text();
+    const cleanJson = responseText
+      .replace(/```json/g, '')
+      .replace(/```/g, '')
+      .trim();
+
+    const aiResult = JSON.parse(cleanJson);
+
+    return Response.json(aiResult);
+  } catch (error) {
+    // якщо API недоступне або ліміт вичерпано — повертаємо заглушку
+    console.error('AI error:', error);
+
+    return Response.json({
+      name: 'Тестовий товар',
+      quantity: 5,
+      category: 'Тестова категорія',
+      description: 'Це опис для тесту — fallback заглушка',
+    });
+  }
 }

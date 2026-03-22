@@ -13,6 +13,9 @@ export const useAnalyzeImage = (
       toast.success('AI проаналізував фото');
       if (onSuccess) onSuccess(data);
     },
-    onError: () => toast.error('Помилка сервера'),
+    onError: () =>
+      toast.error(
+        'Безкоштовні запити закінчились, використовується ручне управління',
+      ),
   });
 };
