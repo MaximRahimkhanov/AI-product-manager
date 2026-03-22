@@ -1,14 +1,18 @@
 import { normalizeProduct } from '@/app/lib/helpers/normalize';
 import { prisma } from '@/app/lib/prisma';
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 // Отримати один товар за id
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } },
+  request: NextRequest,
+  context: { params: { id: string } },
 ) {
+  console.log('URL:', request.url);
+
+  const { id } = context.params;
+
   const product = await prisma.product.findUnique({
-    where: { id: params.id },
+    where: { id },
   });
 
   if (!product) {
