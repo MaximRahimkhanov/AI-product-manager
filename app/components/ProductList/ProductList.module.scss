@@ -1,0 +1,36 @@
+.tableWrapper{
+    border: 1px solid #e00;
+    border-radius: 3px;
+    padding: 15px;
+    max-height: 700px; // висота контейнера
+    overflow-y: auto; // вертикальний скрол
+
+    thead th {
+        position: sticky;
+        top: -16px;
+        background-color: #050505;
+        z-index: 2;
+        padding: 10px;
+        text-align: center;
+        font-weight: 600;
+        border: 1px solid #fcd34d ;
+    }
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+
+    
+}
+
+// .thead th {
+//     position: sticky;
+//     top: 0; // фіксує заголовок зверху
+//     background-color: #f9f9f9; // фон, щоб перекривав рядки
+//     z-index: 2; // щоб не перекривалися інші елементи
+//     padding: 10px;
+//     text-align: center;
+//     font-weight: 600;
+//     border-bottom: 2px solid #ddd;
+// }

@@ -1,0 +1,57 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #0e0d0d;
+  border-radius: 8px;
+}
+
+.formLabel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  color: #faf9f9;
+}
+
+.formInput,
+.formTextarea {
+  margin-top: 0.5rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.formInput:focus,
+.formTextarea:focus {
+  border-color: #0070f3;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 112, 243, 0.2);
+}
+
+.formTextarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.select{
+  background-color: #0e0d0d;
+}
+
+.error {
+  position: absolute;
+  bottom: -19px;
+  left: 0;
+  color: red;
+  font-size: 14px;
+  
+}
