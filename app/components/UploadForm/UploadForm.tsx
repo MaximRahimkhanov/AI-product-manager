@@ -116,7 +116,9 @@ export default function UploadForm() {
             </div>
           </Modal>
         )}
+      </AnimatePresence>
 
+      <AnimatePresence>
         {openModal && aiResult && (
           <Modal title="AIAnswer" handleClose={handlerModalClose}>
             <ProductForm
