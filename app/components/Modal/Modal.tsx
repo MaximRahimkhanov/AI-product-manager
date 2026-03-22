@@ -46,10 +46,11 @@ const Modal = ({ children, handleClose, className, title }: ModalProps) => {
         exit={{ scale: 0.8, opacity: 0, y: 50 }}
         transition={{ type: 'spring', damping: 25, stiffness: 300 }}
         // Налаштування Drag
-        drag
+        drag="y"
         // dragConstraints={constraintsRef} // Тепер модалка не втече за межі екрана
-        dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
-        dragElastic={0.1} // Трохи опору на межах
+        // dragConstraints={{ left: 0, right: 0, top: 0, bottom: 0 }}
+        dragConstraints={{ top: -400, bottom: 0 }}
+        dragElastic={0.2} // Трохи опору на межах
 
         // Прибираємо whileHover для самої модалки,
         // бо 1.2 — це дуже багато, вона перекриє все.
