@@ -15,7 +15,6 @@ export function filterProducts(
 ): ProductType[] {
   let result = [...products];
 
-  // Пошук
   if (options.searchQuery && options.searchQuery.trim() !== '') {
     const query = options.searchQuery.toLowerCase();
 
@@ -44,17 +43,14 @@ export function filterProducts(
     });
   }
 
-  // Фільтр по категорії
   if (options.category) {
     result = result.filter((p) => p.category === options.category);
   }
 
-  // Критичні товари
   if (options.showCriticalOnly) {
     result = result.filter((p) => p.quantity < 5);
   }
 
-  // Сортування
   switch (options.sortBy) {
     case 'quantity':
       result.sort((a, b) => a.quantity - b.quantity);
@@ -70,7 +66,6 @@ export function filterProducts(
       break;
     case null:
     default:
-      // нічого не робимо
       break;
   }
 

@@ -15,7 +15,9 @@ background: radial-gradient(circle at center,
     padding: 5px;
     border: 1px solid #ef4444;
     border-radius: 100px;
+    
     color: black;
+    
     background: linear-gradient(to bottom,
             #fcd34d 0%, 
             #ef4444 100% 
@@ -25,10 +27,7 @@ background: radial-gradient(circle at center,
 
     &:hover {
         border: 1px solid #e0b117;
-        // color: #fcd34d;
-        // background: linear-gradient(to bottom,
-        //             #ef4444 0%,
-        //             #fcd34d 100%);
+       
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
     }
 }

@@ -1,16 +1,5 @@
-// .row{
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-    
-//     gap: 5px;
-//     padding: 5px;
-//     border: 1 solid #fcd34d;
-//     border-radius: 8px;
-// }
 
 .tr {
-    // background-color: #252525;
     transition: all 0.05s ease-in-out;
 
     &:hover {
@@ -20,7 +9,6 @@
 
 .td {
     padding: 8px;
-    // border-bottom: 1px solid #ddd;
     border:  1px solid #fcd34d;
 }
 .editSvgIcon{

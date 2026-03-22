@@ -2,14 +2,14 @@
 import { useMemo, useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { useProducts } from '@/app/hooks/useProducts';
+import { filterProducts } from '@/app/lib/helpers/filterProducts';
+import { ProductType } from '@/app/types/product';
 
 import Loader from '../Loader/Loader';
 import ProductItem from '../ProductItem/ProductItem';
 import ProductModal from '../ProductModal/ProductModal';
 
 import styles from './ProductList.module.scss';
-import { filterProducts } from '@/app/lib/helpers/filterProducts';
-import { ProductType } from '@/app/types/product';
 
 interface ProductListProps {
   searchQuery: string;

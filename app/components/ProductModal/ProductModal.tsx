@@ -4,12 +4,12 @@ import { useUpdateProduct } from '@/app/hooks/useUpdateProduct';
 import { useDeleteProduct } from '@/app/hooks/useDeleteProduct';
 import { ProductType } from '@/app/types/product';
 
-type Props = {
+type ProductModalProps = {
   product: ProductType;
   onClose: () => void;
 };
 
-export default function ProductModal({ product, onClose }: Props) {
+export default function ProductModal({ product, onClose }: ProductModalProps) {
   const updateMutation = useUpdateProduct();
   const deleteMutation = useDeleteProduct();
 

@@ -16,7 +16,6 @@ export async function GET(request: NextRequest, context: Context) {
     : NextResponse.json({ error: 'Product not found' }, { status: 404 });
 }
 
-// Оновити товар за id
 export async function PUT(
   request: Request,
   context: { params: Promise<{ id: string }> },
@@ -36,7 +35,6 @@ export async function PUT(
   }
 }
 
-// Видалити товар за id
 export async function DELETE(
   request: Request,
   context: { params: Promise<{ id: string }> },

@@ -31,7 +31,7 @@ const Modal = ({ children, handleClose, className, title }: ModalProps) => {
   return createPortal(
     <motion.div
       key="backdrop"
-      ref={constraintsRef} // Бекдроп стає межею для перетягування
+      ref={constraintsRef}
       className={style.backdrop}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
