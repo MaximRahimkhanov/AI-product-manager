@@ -42,8 +42,31 @@ export default function UploadForm() {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    const img = new Image();
     const reader = new FileReader();
-    reader.onloadend = () => setBase64Image(reader.result as string);
+
+    reader.onload = (event) => {
+      img.src = event.target?.result as string;
+    };
+
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+
+      const MAX_WIDTH = 800;
+      const scaleSize = MAX_WIDTH / img.width;
+
+      canvas.width = MAX_WIDTH;
+      canvas.height = img.height * scaleSize;
+
+      const ctx = canvas.getContext('2d');
+      ctx?.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+      const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7);
+
+      setBase64Image(compressedBase64);
+    };
+
     reader.readAsDataURL(file);
   };
 
