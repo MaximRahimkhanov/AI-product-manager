@@ -6,9 +6,9 @@ import ProductList from '../components/ProductList/ProductList';
 import { useSaveProduct } from '../hooks/useSaveProduct';
 import Modal from '../components/Modal/Modal';
 import ProductForm from '../components/ProductForm/ProductForm';
-import { Product } from '@prisma/client';
 import Button from '../components/Button/Button';
 import { AnimatePresence } from 'framer-motion';
+import { ProductType } from '../types/product';
 
 const ProductPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -17,7 +17,7 @@ const ProductPage = () => {
     null,
   );
   const [showCriticalOnly, setShowCriticalOnly] = useState(false);
-  const [duplicateProduct, setDuplicateProduct] = useState<Product | null>(
+  const [duplicateProduct, setDuplicateProduct] = useState<ProductType | null>(
     null,
   );
 

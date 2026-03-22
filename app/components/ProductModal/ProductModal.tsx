@@ -1,11 +1,11 @@
-import { Product } from '@prisma/client';
 import Modal from '../Modal/Modal';
 import ProductForm from '../ProductForm/ProductForm';
 import { useUpdateProduct } from '@/app/hooks/useUpdateProduct';
 import { useDeleteProduct } from '@/app/hooks/useDeleteProduct';
+import { ProductType } from '@/app/types/product';
 
 type Props = {
-  product: Product;
+  product: ProductType;
   onClose: () => void;
 };
 

@@ -1,10 +1,10 @@
 import styles from './ProductFilters.module.scss';
 
-interface Props {
+interface ProductFiltersProps {
   onChange: (value: string) => void;
 }
 
-export const ProductFilters = ({ onChange }: Props) => {
+export const ProductFilters = ({ onChange }: ProductFiltersProps) => {
   return (
     <div>
       <input

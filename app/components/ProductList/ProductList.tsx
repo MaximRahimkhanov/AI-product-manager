@@ -1,6 +1,5 @@
 'use client';
 import { useMemo, useState } from 'react';
-import { Product } from '@prisma/client';
 import { AnimatePresence } from 'framer-motion';
 import { useProducts } from '@/app/hooks/useProducts';
 
@@ -10,6 +9,7 @@ import ProductModal from '../ProductModal/ProductModal';
 
 import styles from './ProductList.module.scss';
 import { filterProducts } from '@/app/lib/helpers/filterProducts';
+import { ProductType } from '@/app/types/product';
 
 interface ProductListProps {
   searchQuery: string;
@@ -23,7 +23,7 @@ export default function ProductList({
   showCriticalOnly,
 }: ProductListProps) {
   const { data, isLoading, error } = useProducts();
-  const [selected, setSelected] = useState<Product | null>(null);
+  const [selected, setSelected] = useState<ProductType | null>(null);
 
   const filteredProducts = useMemo(() => {
     if (!data) return [];

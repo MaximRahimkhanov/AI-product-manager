@@ -1,25 +1,5 @@
-// import { Product } from '@prisma/client';
-// import axios from 'axios';
-
-// const apiClient = axios.create({
-//   baseURL: '/api',
-//   headers: { 'Content-Type': 'application/json' },
-// });
-
-// export const analyzeImage = async (
-//   base64Data: string,
-// ): Promise<Omit<Product, 'id' | 'createdAt'>> => {
-//   const res = await apiClient.post<Omit<Product, 'id' | 'createdAt'>>(
-//     '/analyze',
-//     {
-//       image: base64Data,
-//       prompt: 'Опиши товар',
-//     },
-//   );
-//   return res.data;
-// };
-import { Product } from '@prisma/client';
 import axios from 'axios';
+import { ProductFormData, ProductType } from '../types/product';
 
 const apiClient = axios.create({
   baseURL: '/api',
@@ -28,39 +8,31 @@ const apiClient = axios.create({
 
 export const analyzeImage = async (
   base64Data: string,
-): Promise<Omit<Product, 'id' | 'createdAt'>> => {
-  const res = await apiClient.post<Omit<Product, 'id' | 'createdAt'>>(
-    '/analyze',
-    {
-      image: base64Data,
-      prompt: 'Опиши товар',
-    },
-  );
+): Promise<ProductFormData> => {
+  const res = await apiClient.post<ProductFormData>('/analyze', {
+    image: base64Data,
+    prompt: 'Опиши товар',
+  });
   return res.data;
 };
 
-export const getProducts = async (): Promise<Product[]> => {
-  const res = await apiClient.get<Product[]>('/products');
+export const getProducts = async (): Promise<ProductType[]> => {
+  const res = await apiClient.get<ProductType[]>('/products');
   return res.data;
 };
 
-export const getProductById = async (id: string): Promise<Product> => {
-  const res = await apiClient.get<Product>(`/products/${id}`);
+export const getProductById = async (id: string): Promise<ProductType> => {
+  const res = await apiClient.get<ProductType>(`/products/${id}`);
   return res.data;
 };
 
-// export const createProduct = async (
-//   product: Omit<Product, 'id' | 'createdAt'>,
-// ): Promise<Product> => {
-//   const res = await apiClient.post<Product>('/products', product);
-//   return res.data;
-// };
-
-export type ProductPayload = Omit<Product, 'id' | 'createdAt'> & {
+export type ProductPayload = ProductFormData & {
   forceCreate?: boolean;
 };
 
-export async function createProduct(product: ProductPayload): Promise<Product> {
+export async function createProduct(
+  product: ProductPayload,
+): Promise<ProductType> {
   const res = await fetch('/api/products', {
     method: 'POST',
     body: JSON.stringify(product),
@@ -80,9 +52,9 @@ export async function createProduct(product: ProductPayload): Promise<Product> {
 
 export const updateProduct = async (
   id: string,
-  product: Omit<Product, 'id' | 'createdAt'>,
-): Promise<Product> => {
-  const res = await apiClient.put<Product>(`/products/${id}`, product);
+  product: ProductFormData,
+): Promise<ProductType> => {
+  const res = await apiClient.put<ProductType>(`/products/${id}`, product);
   return res.data;
 };
 

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Button from '../Button/Button';
-import type { Product } from '@prisma/client';
 import Modal from '../Modal/Modal';
 import { useAnalyzeImage } from '@/app/hooks/useAnalyzeImage';
 import { useSaveProduct } from '@/app/hooks/useSaveProduct';
@@ -11,23 +10,23 @@ import style from './UploadForm.module.scss';
 import { AnimatePresence } from 'framer-motion';
 import ProductForm from '../ProductForm/ProductForm';
 import toast from 'react-hot-toast';
+import { ProductType } from '@/app/types/product';
+
+export type ProductFormData = Omit<ProductType, 'id' | 'createdAt'>;
 
 export default function UploadForm() {
   const [base64Image, setBase64Image] = useState<string | null>(null);
-  const [aiResult, setAiResult] = useState<Omit<
-    Product,
-    'id' | 'createdAt'
-  > | null>(null);
+  const [aiResult, setAiResult] = useState<ProductFormData | null>(null);
   const [openModal, setOpenModal] = useState(false);
 
-  const analyzeMutation = useAnalyzeImage((data) => {
+  const [duplicateProduct, setDuplicateProduct] = useState<ProductType | null>(
+    null,
+  );
+
+  const analyzeMutation = useAnalyzeImage((data: ProductFormData) => {
     setAiResult(data);
     setOpenModal(true);
   });
-
-  const [duplicateProduct, setDuplicateProduct] = useState<Product | null>(
-    null,
-  );
 
   const saveMutation = useSaveProduct(
     () => {
@@ -35,7 +34,7 @@ export default function UploadForm() {
       setOpenModal(false);
       setBase64Image(null);
     },
-    (existing) => {
+    (existing: ProductType) => {
       setDuplicateProduct(existing);
     },
   );

@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import Button from '../Button/Button';
 import styles from './ProductForm.module.scss';
-import { Product } from '@prisma/client';
-
-type ProductFormData = Omit<Product, 'id' | 'createdAt'>;
+import { ProductFormData } from '@/app/types/product';
 
 type ProductFormProps = {
   initialData?: Partial<ProductFormData>;
