@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import styles from './not-found.module.scss';
+import styles from './styles/not-found.module.scss';
 import Button from './components/Button/Button';
 
 const NotFound = () => {

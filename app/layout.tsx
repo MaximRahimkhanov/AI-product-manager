@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
-import './globals.css';
 import TanStackProvider from './components/TanStackProvider/TanStackProvider';
 import Header from './components/Header/Header';
-import './globals.css';
+
+import './styles/globals.scss';
+import './styles/reset.scss';
 
 export const metadata: Metadata = {
   title: 'AI ManagerDB',

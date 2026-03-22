@@ -1,8 +1,18 @@
 @import 'tailwindcss';
 
 :root {
+  --color-primary: #2563eb;
+  --color-secondary: #64748b;
+  --color-bg: #f9fafb;
+
+  --font-base: 'Inter', sans-serif;
+
   --background: #ffffff;
   --foreground: #171717;
+
+  --bp-sm: 480px;
+  --bp-md: 768px;
+  --bp-lg: 1200px;
 }
 
 @theme inline {

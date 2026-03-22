@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-// import { analyzeImage } from '@/app/api/analyze/analyze';
 import toast from 'react-hot-toast';
 import { analyzeImage } from '../lib/apiClient';
 import { ProductType } from '../types/product';

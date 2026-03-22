@@ -1,6 +1,7 @@
 import { SortBy } from '@/app/lib/helpers/filterProducts';
 import Button from '../Button/Button';
 import { ProductFilters } from '../ProductFilters/ProductFilters';
+
 import styles from './DBListHeader.module.scss';
 
 type DbListHeaderProps = {
@@ -24,10 +25,8 @@ const DbListHeader = ({
         onChange={(e) => {
           const value = e.target.value;
 
-          // сортування
           onSortChange(value === '' ? null : (value as SortBy));
 
-          // показ критичних (наприклад, якщо value === 'critical')
           if (value === 'critical') {
             onShowCritical(true);
           } else {
