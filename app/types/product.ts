@@ -15,9 +15,9 @@ export type ProductType = Prisma.ProductGetPayload<{
 export interface ProductFormData {
   name: string;
   quantity: number;
-  category?: string | null;
-  description?: string | null;
-  image?: string | null;
+  category: string | null;
+  description: string | null;
+  image: string | null;
 }
 
 // export type ProductFormData = Omit<ProductType, 'id' | 'createdAt'> & {
