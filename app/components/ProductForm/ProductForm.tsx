@@ -33,7 +33,6 @@ const ProductForm = ({
     name?: string;
     quantity?: string;
   }>({});
-  const [previewUrl, setPreviewUrl] = useState<string>('/placeholder.png');
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -82,23 +81,17 @@ const ProductForm = ({
     });
   };
 
-  // const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = e.target.files?.[0];
-  //   if (!file) return;
-  //   const reader = new FileReader();
-  //   reader.onload = (event) => {
-  //     setFormData({
-  //       ...formData,
-  //       image: event.target?.result as string,
-  //     });
-  //   };
-  //   reader.readAsDataURL(file);
-  // };
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) {
-      setPreviewUrl(URL.createObjectURL(file));
-    }
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setFormData({
+        ...formData,
+        image: event.target?.result as string,
+      });
+    };
+    reader.readAsDataURL(file);
   };
 
   return (
