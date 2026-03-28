@@ -106,10 +106,11 @@ const ProductForm = ({
       {showTitle && (
         <h3>{isEdit ? 'Редагування товару' : 'AI пропонує товар'}</h3>
       )}
-      {/* <input type="file" accept="image/*" onChange={handleFileUpload} /> */}
-      ;
-      <img src={previewUrl} alt="Preview" />
+
+      <input type="file" accept="image/*" onChange={handleFileUpload} />
+
       {formData.image && <PreviewImage base64Image={formData.image} />}
+
       <label className={styles.formLabel}>
         Назва:
         <input
@@ -121,6 +122,7 @@ const ProductForm = ({
         />
         {errors.name && <p className={styles.error}>{errors.name}</p>}
       </label>
+
       <label className={styles.formLabel}>
         Кількість:
         <input
@@ -132,6 +134,7 @@ const ProductForm = ({
         />
         {errors.quantity && <p className={styles.error}>{errors.quantity}</p>}
       </label>
+
       <label className={styles.formLabel}>
         Категорія:
         <select
@@ -147,6 +150,7 @@ const ProductForm = ({
           <option value="vegetables">🥦 Vegetables</option>
         </select>
       </label>
+
       <label className={styles.formLabel}>
         Опис:
         <textarea
@@ -156,6 +160,7 @@ const ProductForm = ({
           onChange={handleChange}
         />
       </label>
+
       <div className={styles.formActions}>
         <Button
           type="button"
