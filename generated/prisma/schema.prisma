@@ -11,6 +11,7 @@ model Product {
   id          String   @id @default(cuid())
   name        String
   quantity    Int
+  image       String?
   category    String?
   description String?
   createdAt   DateTime @default(now())

@@ -152,6 +152,7 @@ export default function UploadForm() {
                   ...data,
                   category: data.category ?? null,
                   description: data.description ?? null,
+                  image: base64Image,
                 })
               }
             />

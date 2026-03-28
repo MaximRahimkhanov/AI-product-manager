@@ -5,13 +5,24 @@ export type ProductType = Prisma.ProductGetPayload<{
     id: true;
     name: true;
     quantity: true;
+    image: true;
     category: true;
     description: true;
     createdAt: true;
   };
 }>;
 
-export type ProductFormData = Omit<ProductType, 'id' | 'createdAt'>;
+export interface ProductFormData {
+  name: string;
+  quantity: number;
+  category?: string | null;
+  description?: string | null;
+  image?: string | null;
+}
+
+// export type ProductFormData = Omit<ProductType, 'id' | 'createdAt'> & {
+//   image: string | null;
+// };
 
 export type ProductFormErrors = {
   name?: string;

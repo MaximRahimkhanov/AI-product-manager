@@ -45,6 +45,7 @@ export default function ProductList({
         <table className={styles.table}>
           <thead>
             <tr>
+              <th className={styles.th}>Фото</th>
               <th className={styles.th}>Назва</th>
               <th className={styles.th}>Кількість</th>
               <th className={styles.th}>Категорія</th>

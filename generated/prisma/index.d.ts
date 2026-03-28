@@ -890,6 +890,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     quantity: number | null
+    image: string | null
     category: string | null
     description: string | null
     createdAt: Date | null
@@ -899,6 +900,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     quantity: number | null
+    image: string | null
     category: string | null
     description: string | null
     createdAt: Date | null
@@ -908,6 +910,7 @@ export namespace Prisma {
     id: number
     name: number
     quantity: number
+    image: number
     category: number
     description: number
     createdAt: number
@@ -927,6 +930,7 @@ export namespace Prisma {
     id?: true
     name?: true
     quantity?: true
+    image?: true
     category?: true
     description?: true
     createdAt?: true
@@ -936,6 +940,7 @@ export namespace Prisma {
     id?: true
     name?: true
     quantity?: true
+    image?: true
     category?: true
     description?: true
     createdAt?: true
@@ -945,6 +950,7 @@ export namespace Prisma {
     id?: true
     name?: true
     quantity?: true
+    image?: true
     category?: true
     description?: true
     createdAt?: true
@@ -1041,6 +1047,7 @@ export namespace Prisma {
     id: string
     name: string
     quantity: number
+    image: string | null
     category: string | null
     description: string | null
     createdAt: Date
@@ -1069,6 +1076,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     quantity?: boolean
+    image?: boolean
     category?: boolean
     description?: boolean
     createdAt?: boolean
@@ -1078,6 +1086,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     quantity?: boolean
+    image?: boolean
     category?: boolean
     description?: boolean
     createdAt?: boolean
@@ -1087,6 +1096,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     quantity?: boolean
+    image?: boolean
     category?: boolean
     description?: boolean
     createdAt?: boolean
@@ -1096,12 +1106,13 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     quantity?: boolean
+    image?: boolean
     category?: boolean
     description?: boolean
     createdAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "quantity" | "category" | "description" | "createdAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "quantity" | "image" | "category" | "description" | "createdAt", ExtArgs["result"]["product"]>
 
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Product"
@@ -1110,6 +1121,7 @@ export namespace Prisma {
       id: string
       name: string
       quantity: number
+      image: string | null
       category: string | null
       description: string | null
       createdAt: Date
@@ -1539,6 +1551,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Product", 'String'>
     readonly name: FieldRef<"Product", 'String'>
     readonly quantity: FieldRef<"Product", 'Int'>
+    readonly image: FieldRef<"Product", 'String'>
     readonly category: FieldRef<"Product", 'String'>
     readonly description: FieldRef<"Product", 'String'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
@@ -1931,6 +1944,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     quantity: 'quantity',
+    image: 'image',
     category: 'category',
     description: 'description',
     createdAt: 'createdAt'
@@ -2034,6 +2048,7 @@ export namespace Prisma {
     id?: StringFilter<"Product"> | string
     name?: StringFilter<"Product"> | string
     quantity?: IntFilter<"Product"> | number
+    image?: StringNullableFilter<"Product"> | string | null
     category?: StringNullableFilter<"Product"> | string | null
     description?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
@@ -2043,6 +2058,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     quantity?: SortOrder
+    image?: SortOrderInput | SortOrder
     category?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -2055,6 +2071,7 @@ export namespace Prisma {
     NOT?: ProductWhereInput | ProductWhereInput[]
     name?: StringFilter<"Product"> | string
     quantity?: IntFilter<"Product"> | number
+    image?: StringNullableFilter<"Product"> | string | null
     category?: StringNullableFilter<"Product"> | string | null
     description?: StringNullableFilter<"Product"> | string | null
     createdAt?: DateTimeFilter<"Product"> | Date | string
@@ -2064,6 +2081,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     quantity?: SortOrder
+    image?: SortOrderInput | SortOrder
     category?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
     createdAt?: SortOrder
@@ -2081,6 +2099,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Product"> | string
     name?: StringWithAggregatesFilter<"Product"> | string
     quantity?: IntWithAggregatesFilter<"Product"> | number
+    image?: StringNullableWithAggregatesFilter<"Product"> | string | null
     category?: StringNullableWithAggregatesFilter<"Product"> | string | null
     description?: StringNullableWithAggregatesFilter<"Product"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
@@ -2090,6 +2109,7 @@ export namespace Prisma {
     id?: string
     name: string
     quantity: number
+    image?: string | null
     category?: string | null
     description?: string | null
     createdAt?: Date | string
@@ -2099,6 +2119,7 @@ export namespace Prisma {
     id?: string
     name: string
     quantity: number
+    image?: string | null
     category?: string | null
     description?: string | null
     createdAt?: Date | string
@@ -2108,6 +2129,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2117,6 +2139,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2126,6 +2149,7 @@ export namespace Prisma {
     id?: string
     name: string
     quantity: number
+    image?: string | null
     category?: string | null
     description?: string | null
     createdAt?: Date | string
@@ -2135,6 +2159,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2144,6 +2169,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     quantity?: IntFieldUpdateOperationsInput | number
+    image?: NullableStringFieldUpdateOperationsInput | string | null
     category?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -2210,6 +2236,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     quantity?: SortOrder
+    image?: SortOrder
     category?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
@@ -2223,6 +2250,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     quantity?: SortOrder
+    image?: SortOrder
     category?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder
@@ -2232,6 +2260,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     quantity?: SortOrder
+    image?: SortOrder
     category?: SortOrder
     description?: SortOrder
     createdAt?: SortOrder

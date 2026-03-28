@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from '../Button/Button';
 import styles from './ProductForm.module.scss';
 import { ProductFormData } from '@/app/types/product';
+import PreviewImage from '../PreviewImage/PreviewImage';
 
 type ProductFormProps = {
   initialData?: Partial<ProductFormData>;
@@ -19,7 +20,13 @@ const ProductForm = ({
   showTitle = false,
 }: ProductFormProps) => {
   const [formData, setFormData] = useState<Partial<ProductFormData>>(
-    initialData ?? { name: '', quantity: 0, category: null, description: null },
+    initialData ?? {
+      name: '',
+      quantity: 0,
+      category: null,
+      description: null,
+      image: null,
+    },
   );
 
   const [errors, setErrors] = useState<{
@@ -70,7 +77,21 @@ const ProductForm = ({
       quantity: Number(formData.quantity ?? 0),
       category: formData.category ?? null,
       description: formData.description ?? null,
+      image: formData.image ?? null,
     });
+  };
+
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      setFormData({
+        ...formData,
+        image: event.target?.result as string,
+      });
+    };
+    reader.readAsDataURL(file);
   };
 
   return (
@@ -78,6 +99,10 @@ const ProductForm = ({
       {showTitle && (
         <h3>{isEdit ? 'Редагування товару' : 'AI пропонує товар'}</h3>
       )}
+
+      <input type="file" accept="image/*" onChange={handleFileUpload} />
+
+      {formData.image && <PreviewImage base64Image={formData.image} />}
 
       <label className={styles.formLabel}>
         Назва:

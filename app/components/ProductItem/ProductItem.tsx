@@ -2,6 +2,9 @@
 import { ProductType } from '@/app/types/product';
 import Button from '../Button/Button';
 import styles from './ProductItem.module.scss';
+import Modal from '../Modal/Modal';
+import { useState } from 'react';
+import Image from 'next/image';
 
 type ProductItemProps = {
   product: ProductType;
@@ -9,8 +12,37 @@ type ProductItemProps = {
 };
 
 export default function ProductItem({ product, onOpen }: ProductItemProps) {
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
     <tr className={styles.tr}>
+      <td className={styles.td}>
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={product.name}
+            width={50}
+            height={50}
+            className={styles.thumbnail}
+            onClick={() => setSelectedImage(product.image)}
+          />
+        ) : (
+          '-'
+        )}
+
+        {selectedImage && (
+          <Modal title="Фото товару" handleClose={() => setSelectedImage(null)}>
+            <Image
+              src={selectedImage}
+              alt="Product"
+              width={600}
+              height={600}
+              style={{ objectFit: 'contain' }}
+            />
+          </Modal>
+        )}
+      </td>
+
       <td className={styles.td}>{product.name}</td>
       <td className={styles.td}>{product.quantity}</td>
       <td className={styles.td}>{product.category ?? '-'}</td>
