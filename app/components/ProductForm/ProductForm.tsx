@@ -33,6 +33,7 @@ const ProductForm = ({
     name?: string;
     quantity?: string;
   }>({});
+  const [previewUrl, setPreviewUrl] = useState<string>('/placeholder.png');
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -81,17 +82,23 @@ const ProductForm = ({
     });
   };
 
+  // const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0];
+  //   if (!file) return;
+  //   const reader = new FileReader();
+  //   reader.onload = (event) => {
+  //     setFormData({
+  //       ...formData,
+  //       image: event.target?.result as string,
+  //     });
+  //   };
+  //   reader.readAsDataURL(file);
+  // };
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      setFormData({
-        ...formData,
-        image: event.target?.result as string,
-      });
-    };
-    reader.readAsDataURL(file);
+    if (file) {
+      setPreviewUrl(URL.createObjectURL(file));
+    }
   };
 
   return (
@@ -99,11 +106,10 @@ const ProductForm = ({
       {showTitle && (
         <h3>{isEdit ? 'Редагування товару' : 'AI пропонує товар'}</h3>
       )}
-
-      <input type="file" accept="image/*" onChange={handleFileUpload} />
-
+      {/* <input type="file" accept="image/*" onChange={handleFileUpload} /> */}
+      ;
+      <img src={previewUrl} alt="Preview" />
       {formData.image && <PreviewImage base64Image={formData.image} />}
-
       <label className={styles.formLabel}>
         Назва:
         <input
@@ -115,7 +121,6 @@ const ProductForm = ({
         />
         {errors.name && <p className={styles.error}>{errors.name}</p>}
       </label>
-
       <label className={styles.formLabel}>
         Кількість:
         <input
@@ -127,7 +132,6 @@ const ProductForm = ({
         />
         {errors.quantity && <p className={styles.error}>{errors.quantity}</p>}
       </label>
-
       <label className={styles.formLabel}>
         Категорія:
         <select
@@ -143,7 +147,6 @@ const ProductForm = ({
           <option value="vegetables">🥦 Vegetables</option>
         </select>
       </label>
-
       <label className={styles.formLabel}>
         Опис:
         <textarea
@@ -153,7 +156,6 @@ const ProductForm = ({
           onChange={handleChange}
         />
       </label>
-
       <div className={styles.formActions}>
         <Button
           type="button"
